@@ -1,6 +1,10 @@
 package view;
+import controller.Control;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
     private JPanel jPanel;
@@ -26,6 +30,7 @@ public class MainWindow extends JFrame {
 
     private JScrollPane scrollPane;
     private JScrollPane scrollPane2;
+    private String currentText = "";
 
     public MainWindow() {
         this.setSize(500, 500);
@@ -91,7 +96,75 @@ public class MainWindow extends JFrame {
         this.add(jPanel, BorderLayout.NORTH);
         this.add(jPanel3, BorderLayout.CENTER);
         this.add(jLabel4, BorderLayout.SOUTH);
-
         this.add(jLabel4, BorderLayout.SOUTH); // Agregamos jPanel en la región sur
+
+        //Eventos
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("X");
+            }
+        });
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("Y");
+            }
+        });
+        jButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("Z");
+            }
+        });
+        jButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("W");
+            }
+        });
+        jButton5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Ir al control
+                currentText=jTextField.getText();
+                Control control = new Control(currentText, jTextField);
+            }
+        });
+        jButton6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("^");
+            }
+        });
+        jButton7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("v");
+            }
+        });
+        jButton8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("'");
+            }
+        });
+        jButton9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write("(");
+            }
+        });
+        jButton10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                write(")");
+            }
+        });
+    }
+    private void write(String string) {
+        currentText = jTextField.getText(); // Obtener el texto actual del JTextField
+        currentText += string; // Agregar "X" al texto actual
+        jTextField.setText(currentText);
     }
 }
